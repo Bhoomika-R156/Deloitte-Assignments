@@ -1,0 +1,36 @@
+public class FuelPostfixSum {
+       // Method to calculate the postfix sum
+    public static int[] calculatePostfixSum(int[] fuel) {
+        // Get the length of the fuel array
+        int m = fuel.length;
+                // Initialize an array to store the postfix sums
+        int[] postfixSum = new int[m];
+               // Variable to accumulate the total fuel consumed from the current point to the end
+        int total = 0; 
+               // Loop through the array starting from the last element (rightmost)
+        for (int i = m - 1; i >= 0; i--) {
+            // Add the current element to the total (accumulating sum)
+            total += fuel[i];             
+            // Store the accumulated sum in the postfixSum array
+            postfixSum[i] = total; 
+        }
+               // Return the array containing the postfix sums
+        return postfixSum;
+    }
+    public static void main(String[] args) {
+        // Example fuel consumption data at each delivery point
+        int[] fuel = {5, 10, 3, 7, 8};
+                // Calculate the postfix sum of the fuel consumption data
+        int[] postfixSum = calculatePostfixSum(fuel);
+               // Print the result in a readable format
+        System.out.print("PostfixSum[] = [");
+        for (int i = 0; i < postfixSum.length; i++) {
+            System.out.print(postfixSum[i]);
+            // Add a comma between elements except for the last one
+            if (i < postfixSum.length - 1) {
+                System.out.print(", ");
+            }
+        }
+        System.out.println("]");
+    }  
+}
