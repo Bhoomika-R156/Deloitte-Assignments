@@ -1,0 +1,31 @@
+import java.util.HashMap;
+import java.util.Map;
+
+public class WordCounter {
+
+    public static Map<String, Integer> countWords(String paragraph) {
+        // Convert the paragraph to lowercase to ensure case insensitivity
+        paragraph = paragraph.toLowerCase();
+        
+        // Split the paragraph into words using regex to handle punctuation
+        String[] words = paragraph.split("\\W+");
+        
+        // Create a map to hold the word counts
+        Map<String, Integer> wordCount = new HashMap<>();
+        
+        // Count each word
+        for (String word : words) {
+            if (!word.isEmpty()) { // Check for empty strings
+                wordCount.put(word, wordCount.getOrDefault(word, 0) + 1);
+            }
+        }
+        
+        return wordCount;
+    }
+
+    public static void main(String[] args) {
+        String inputParagraph = "the cat and the hat";
+        Map<String, Integer> output = countWords(inputParagraph);
+        System.out.println(output);  // Output: {the=2, cat=1, and=1, hat=1}
+    }
+}
