@@ -1,0 +1,28 @@
+import java.util.LinkedHashSet;
+
+public class RemoveDuplicates {
+
+    public static String removeDuplicateCharacters(String input) {
+        // Use a LinkedHashSet to maintain the order of characters
+        LinkedHashSet<Character> charSet = new LinkedHashSet<>();
+        
+        // Iterate through each character in the input string
+        for (char c : input.toCharArray()) {
+            charSet.add(c); // Add the character to the set (duplicates are ignored)
+        }
+        
+        // Build the result string from the set
+        StringBuilder result = new StringBuilder();
+        for (char c : charSet) {
+            result.append(c);
+        }
+        
+        return result.toString(); // Convert StringBuilder to String and return
+    }
+
+    public static void main(String[] args) {
+        String input = "banana";
+        String output = removeDuplicateCharacters(input);
+        System.out.println(output); // Output: "ban"
+    }
+}
