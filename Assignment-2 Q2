@@ -1,0 +1,36 @@
+public class SalesPrefixSum {
+        // Method to calculate the prefix sum
+    public static int[] calculatePrefixSum(int[] sales) {
+        // Get the length of the sales array
+        int n = sales.length;
+               // Initialize an array to store the prefix sums
+        int[] prefixSum = new int[n];
+                // If there are sales data, calculate the prefix sum
+        if (n > 0) {
+            // The first element of prefixSum is the same as the first element of sales
+            prefixSum[0] = sales[0];
+                        // Loop through the sales array starting from the second element
+            for (int i = 1; i < n; i++) {
+                // Each element in prefixSum is the sum of the previous prefix sum and the current sales value
+                prefixSum[i] = prefixSum[i - 1] + sales[i];
+            }
+        }
+               // Return the array containing the prefix sums
+        return prefixSum;}
+   public static void main(String[] args) {
+        // Example sales data (each element is the sales for a specific day)
+        int[] sales = {10, 20, 15, 30, 25};
+               // Calculate the prefix sum of the sales data
+        int[] prefixSum = calculatePrefixSum(sales);
+               // Print the result in a readable format
+        System.out.print("PrefixSum[] = [");
+        for (int i = 0; i < prefixSum.length; i++) {
+            System.out.print(prefixSum[i]);
+            // Add a comma between elements except for the last one
+            if (i < prefixSum.length - 1) {
+                System.out.print(", ");
+            }
+        }
+        System.out.println("]");
+    }
+}
