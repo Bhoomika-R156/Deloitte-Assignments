@@ -1,0 +1,31 @@
+import java.util.Arrays;
+public class MostFrequentRating {
+    public static void main(String[] args) {
+        // Array of ratings from the customers
+        int[] ratings = {2, 4, 6, 4, 7, 8, 6, 4};
+        // Sort the ratings array to make it easier to find duplicates
+        Arrays.sort(ratings);
+        // Initialize variables:
+        // maxcount keeps track of the highest frequency of any rating.
+        // currentcount keeps track of the frequency of the current rating.
+        // mostfrequent stores the rating with the highest frequency.
+        int maxcount = 1, currentcount = 1, mostfrequent = ratings[0];
+        // Loop through the ratings array, starting from the second element
+        for (int i = 1; i < ratings.length; i++) { 
+            // If the current rating is equal to the previous one, increment the count
+            if (ratings[i] == ratings[i - 1]) {
+                currentcount++;
+            } else {
+                // Reset the count for a new rating
+                currentcount = 1; 
+            }
+            // If the current rating's count is higher than maxcount, update maxcount and mostfrequent
+            if (currentcount > maxcount) {
+                maxcount = currentcount;
+                mostfrequent = ratings[i];
+            }
+        }
+        // Print the most frequent rating and its count
+        System.out.println("Most Frequent rating: " + mostfrequent + " Count: " + maxcount);
+    }
+}
