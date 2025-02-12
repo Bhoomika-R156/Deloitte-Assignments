@@ -1,0 +1,35 @@
+import java.util.Arrays;
+import java.util.Comparator;
+public class WeatherMonitoring {
+       public static int findKthClosest(int[] readings, int target, int k) {
+        // Create an array of readings with their distances from the target
+        Integer[] indexedReadings = new Integer[readings.length];
+        for (int i = 0; i < readings.length; i++) {
+            indexedReadings[i] = readings[i];
+        }
+        // Sort the readings based on their distance from the target
+        Arrays.sort(indexedReadings, new Comparator<Integer>() {
+            @Override
+            public int compare(Integer a, Integer b) {
+                int distanceA = Math.abs(a - target);
+                int distanceB = Math.abs(b - target);
+                // If distances are equal, sort by the reading value
+                if (distanceA == distanceB) {
+                    return Integer.compare(a, b);
+                }
+                return Integer.compare(distanceA, distanceB);
+            }
+        });
+
+        // Return the K-th closest reading (1-based index)
+        return indexedReadings[k - 1];
+    }
+
+    public static void main(String[] args) {
+        int[] readings = {72, 75, 68, 80, 74};
+        int target = 73;
+        int k = 2;
+        int result = findKthClosest(readings, target, k);
+        System.out.println(result); // Output: 74
+    }
+}
