@@ -1,0 +1,31 @@
+import java.util.Arrays;
+public class CoinChange {
+    public static int minCoins(int[] coins, int amount) {
+        // Create a DP array to store the minimum coins for each amount
+        int[] dp = new int[amount + 1];
+        
+        // Initialize the DP array with a value greater than any possible number of coins
+        Arrays.fill(dp, amount + 1);
+        
+        // Base case: 0 coins are needed to make the amount 0
+        dp[0] = 0;
+
+        // Iterate through each coin
+        for (int coin : coins) {
+            // Update the DP array for all amounts from coin to amount
+            for (int j = coin; j <= amount; j++) {
+                dp[j] = Math.min(dp[j], dp[j - coin] + 1);
+            }
+        }
+
+        // If dp[amount] is still amount + 1, it means we cannot make that amount
+        return dp[amount] > amount ? -1 : dp[amount];
+    }
+
+    public static void main(String[] args) {
+        int[] coins = {1, 2, 5};
+        int amount = 11;
+        int result = minCoins(coins, amount);
+        System.out.println(result); // Output: 3
+    }
+}
