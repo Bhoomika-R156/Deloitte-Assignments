@@ -1,0 +1,21 @@
+import java.util.Arrays;
+
+public class PermutationInString {
+    public static boolean checkInclusion(String s1, String s2) {
+        int[] count = new int[26];
+        for (char c : s1.toCharArray()) count[c - 'a']++;
+        
+        int len1 = s1.length(), len2 = s2.length();
+        for (int i = 0; i < len2; i++) {
+            if (i >= len1) count[s2.charAt(i - len1) - 'a']++;
+            count[s2.charAt(i) - 'a']--;
+            if (Arrays.stream(count).allMatch(x -> x == 0)) return true;
+        }
+        return false;
+    }
+
+    public static void main(String[] args) {
+        System.out.println(checkInclusion("ab", "eidbaooo")); // Output: true
+        System.out.println(checkInclusion("ab", "eidboaoo")); // Output: false
+    }
+}
